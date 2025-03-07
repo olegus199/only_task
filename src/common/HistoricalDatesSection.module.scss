@@ -1,0 +1,29 @@
+@use "../variables" as *;
+
+.main_section {
+  padding: 0 1.25rem;
+}
+
+.content {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding-top: 10.625rem;
+}
+
+.h1 {
+  position: relative;
+  font-size: 3.5rem;
+  font-weight: 700;
+  padding-left: 5rem;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: .3125rem;
+    height: 7.5rem;
+    background: linear-gradient($iris_100, $fuchsia_100);
+    content: "";
+  }
+}
