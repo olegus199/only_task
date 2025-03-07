@@ -1,5 +1,5 @@
 import "./App.scss";
-import HistoricalDatesSection from "../common/HistoricalDatesSection.tsx";
+import HistoricalDatesSection from "../features/historical-dates/HistoricalDatesSection.tsx";
 
 function App() {
 
