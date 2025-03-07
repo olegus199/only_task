@@ -1,1 +1,8 @@
 @use "../../variables" as *;
+@use "../../mixins" as *;
+
+.years_header {
+  @include flex_space_between();
+  max-width: 60.875rem;
+  margin: 6rem auto 0;
+}

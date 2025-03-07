@@ -1,0 +1,19 @@
+@use "../../variables" as *;
+
+.counter {
+  font-size: 12.5rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+
+  &:not(:last-child) {
+    margin-right: 2rem;
+  }
+}
+
+.from {
+  color: $iris_100;
+}
+
+.to {
+  color: $fuchsia_100;
+}
