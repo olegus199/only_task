@@ -17,3 +17,25 @@
 .to {
   color: $fuchsia_100;
 }
+
+@media (max-width: 1000px) {
+  .counter {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .counter {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .counter {
+    font-size: 3.5rem;
+
+    &:not(:last-child) {
+      margin-right: 1.375rem;
+    }
+  }
+}

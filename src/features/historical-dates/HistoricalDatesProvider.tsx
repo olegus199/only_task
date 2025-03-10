@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import {
   ActiveTimePeriod,
   HistoricalDatesContext,
@@ -187,6 +187,8 @@ const HistoricalDatesProvider: FC<HistoricalDatesProviderProps> = ({ children })
     multiplier: 0,
   });
 
+  const [animationDelay, setAnimationDelay] = useState(window.innerWidth <= 770 ? 350 : 900);
+
   function handleChangeActiveTimePeriod(
     name: TimePeriodName, newIdx: number, multiplier: number): void {
     const newTimePeriod = timePeriods.find((period) => period.name === name);
@@ -204,8 +206,21 @@ const HistoricalDatesProvider: FC<HistoricalDatesProviderProps> = ({ children })
     activeTimePeriod,
     translatedTimePeriodNames,
     handleChangeActiveTimePeriod,
-    dotsAmount: 6,
+    dotsAmount: timePeriods.length,
+    animationDelay: animationDelay,
   };
+
+  useEffect(() => {
+    function handleResize(): void {
+      setAnimationDelay(window.innerWidth <= 770 ? 350 : 900);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <HistoricalDatesContext.Provider value={value}>

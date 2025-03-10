@@ -1,4 +1,4 @@
-import styles from "./YearsSelectorCircle.module.scss";
+import styles from "./PeriodSelectorCircle.module.scss";
 import { FC, useEffect, useRef } from "react";
 import YearsHeader from "./YearsHeader.tsx";
 import { useHistoricalDates } from "./historical-dates-context.ts";
@@ -11,7 +11,7 @@ interface DotProps {
   rotation: number;
 }
 
-const YearsSelectorCircle: FC = () => {
+const PeriodSelectorCircle: FC = () => {
   const { activeTimePeriod: { currentIdx, multiplier }, dotsAmount } = useHistoricalDates();
   const rotation = currentIdx * ANGLE_STEP * -1 - multiplier * FULL_CIRCLE;
 
@@ -44,7 +44,7 @@ const Dot: FC<DotProps> = ({ idx, rotation }) => {
     translatedTimePeriodNames,
   } = useHistoricalDates();
   const { name: activePeriodName, currentIdx, multiplier } = activeTimePeriod;
-  const dotPeriodName = timePeriods[idx].name;
+  const dotPeriodName = timePeriods[idx]?.name;
 
   const timeout = useRef<NodeJS.Timeout | null>(null);
   const activePeriodNameRef = useRef<HTMLParagraphElement>(null);
@@ -118,4 +118,4 @@ const Dot: FC<DotProps> = ({ idx, rotation }) => {
   );
 };
 
-export default YearsSelectorCircle;
+export default PeriodSelectorCircle;

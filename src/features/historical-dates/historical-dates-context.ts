@@ -33,6 +33,7 @@ export interface IHistoricalDatesContext {
   handleChangeActiveTimePeriod: (
     name: TimePeriodName, newIdx: number, multiplier: number) => void;
   dotsAmount: number;
+  animationDelay: number;
 }
 
 export const HistoricalDatesContext = createContext<IHistoricalDatesContext | undefined>(undefined);

@@ -12,6 +12,28 @@ $bg_decor_border: 1px solid $bg_decor_color;
 
 $standard_transition: .3s ease-out;
 
-$bezier: .9s cubic-bezier(.4, .89, .39, .99);
+$bezier_slow: .9s cubic-bezier(.4, .89, .39, .99);
+
+$bezier_fast: .3s cubic-bezier(.4, .89, .39, .99);
 
 $angle: 0;
+
+@keyframes fade_in {
+  from {
+    opacity: 0;
+    transform: translateY(.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade_out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

@@ -1,59 +1,17 @@
+import "./SwiperStyles.scss";
 import styles from "./SwiperSlider.module.scss";
 import { FC, useEffect, useRef, useState } from "react";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { ActiveTimePeriod, useHistoricalDates } from "./historical-dates-context.ts";
-import "./SwiperStyles.scss";
 import { IoChevronBackSharp } from "react-icons/io5";
+import useCurrentData from "../../common/hooks/useCurrentData.tsx";
 
 const SwiperSlider: FC = () => {
-  const { activeTimePeriod } = useHistoricalDates();
-
   const containerRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<SwiperRef>(null);
 
-  const timeout = useRef<NodeJS.Timeout | null>(null);
-
-  const [currentData, setCurrentData] = useState<ActiveTimePeriod>(activeTimePeriod);
-
-  useEffect(() => {
-    const containerEl = containerRef.current;
-    if (containerEl) {
-      timeout.current = setTimeout(() => {
-        containerEl.classList.remove(`${styles.fade_out}`);
-        containerEl.classList.add(`${styles.fade_in}`);
-
-        swiperRef.current?.swiper.slideTo(0, 0);
-        setCurrentData(activeTimePeriod);
-      }, 900);
-    }
-
-    return () => {
-      if (timeout.current) {
-        clearTimeout(timeout.current);
-      }
-
-      const containerEl = containerRef.current;
-      if (containerEl) {
-        containerEl.classList.remove(`${styles.fade_in}`);
-        containerEl.classList.add(`${styles.fade_out}`);
-      }
-    };
-  }, [activeTimePeriod.name]);
-
-  useEffect(() => {
-    const containerEl = containerRef.current;
-    if (containerEl) {
-      containerEl.classList.remove(`${styles.fade_out}`);
-      containerEl.classList.add(`${styles.fade_in}`);
-    }
-
-    return () => {
-      if (timeout.current) {
-        clearTimeout(timeout.current);
-      }
-    };
-  }, []);
+  const { currentData } = useCurrentData(containerRef, swiperRef);
 
   return (
     <div
@@ -66,15 +24,33 @@ const SwiperSlider: FC = () => {
       <Swiper
         ref={swiperRef}
         className={styles.swiper}
-        spaceBetween={80}
-        slidesPerView={3}
         modules={[Navigation]}
+        breakpoints={{
+          20: {
+            slidesPerView: 1.5,
+            spaceBetween: 25,
+          },
+          431: {
+            slidesPerView: 1.5,
+            spaceBetween: 25,
+          },
+          771: {
+            slidesPerView: 2.5,
+            spaceBetween: 30,
+          },
+          1001: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1281: {
+            slidesPerView: 4,
+            spaceBetween: 80,
+          },
+        }}
         navigation={{
           prevEl: ".button-prev",
           nextEl: ".button-next",
         }}
-        pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
       >
         {currentData.events.map((e, idx) => (
           <SwiperSlide key={idx}>

@@ -1,9 +1,13 @@
-import styles from "./YearsNavigation.module.scss";
+import styles from "./PeriodNavigation.module.scss";
 import { FC } from "react";
 import { useHistoricalDates } from "../../features/historical-dates/historical-dates-context.ts";
 import { IoChevronBackSharp } from "react-icons/io5";
 
-const YearsNavigation: FC = () => {
+interface YearsNavigationProps {
+  isMobile?: boolean;
+}
+
+const PeriodNavigation: FC<YearsNavigationProps> = ({ isMobile }) => {
   const {
     activeTimePeriod: { currentIdx, multiplier },
     dotsAmount,
@@ -50,7 +54,7 @@ const YearsNavigation: FC = () => {
   }
 
   return (
-    <div className={styles.years_navigation}>
+    <div className={`${styles.years_navigation} ${isMobile && styles.mobile}`}>
       <div className={styles.navigation_total}>
         <p>{(currentIdx + 1).toString().padStart(2, "0")}</p>
         <p>/</p>
@@ -79,4 +83,4 @@ const YearsNavigation: FC = () => {
   );
 };
 
-export default YearsNavigation;
+export default PeriodNavigation;

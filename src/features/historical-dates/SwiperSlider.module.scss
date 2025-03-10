@@ -1,39 +1,18 @@
 @use "../../variables" as *;
 @use "../../mixins" as *;
 
-@keyframes fade_in {
-  from {
-    opacity: 0;
-    transform: translateY(.25rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade_out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 .swiper_container {
   @include flex_space_between();
+  gap: 1rem;
   flex-wrap: nowrap;
 
   margin: 3.5rem auto 0;
-  padding: 0 2.5rem;
-  max-width: 85rem;
 }
 
 .fade_in {
   transform: translateY(.25rem);
   opacity: 0;
-  animation: fade_in $bezier forwards;
+  animation: fade_in $bezier_slow forwards;
 }
 
 .fade_out {
@@ -41,8 +20,7 @@
 }
 
 .swiper {
-  max-width: 73rem;
-  margin: 0 auto;
+  max-width: 79.875rem;
 }
 
 .swiper_button {
@@ -68,4 +46,40 @@
   margin-top: .9375rem;
   font-size: 1.25rem;
   line-height: 1.875rem;
+}
+
+@media (max-width: 770px) {
+  .swiper_container {
+    padding: 0;
+  }
+
+  .fade_in {
+    transform: translateY(.25rem);
+    opacity: 0;
+    animation: fade_in $bezier_fast forwards;
+  }
+
+  .swiper_button {
+    display: none;
+  }
+
+}
+
+@media (max-width: 430px) {
+  .swiper_container {
+    align-items: start;
+    width: 100%;
+    min-height: 10rem;
+    margin-top: 1.25rem;
+  }
+
+  .year {
+    width: fit-content;
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: .875rem;
+    line-height: 1.45em;
+  }
 }

@@ -5,3 +5,22 @@
 .swiper-button-disabled {
   visibility: hidden;
 }
+
+.button-prev {
+  margin-left: 1rem;
+}
+
+.button-next {
+  margin-right: 1rem
+}
+
+@media (max-width: 430px) {
+  .swiper-slide {
+    opacity: .4;
+
+    &.swiper-slide-active {
+      opacity: 1;
+    }
+  }
+
+}
