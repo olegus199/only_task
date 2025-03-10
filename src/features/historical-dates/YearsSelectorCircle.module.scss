@@ -59,7 +59,7 @@ $active_dot_width: 3.5rem;
   &:hover {
     @include dot_active();
 
-    .period_number {
+    & + .period_number {
       opacity: 1;
     }
   }
@@ -77,7 +77,7 @@ $active_dot_width: 3.5rem;
   $angleStep: $i * 60;
   $offset: 60;
 
-  .dot_#{$angleStep} {
+  .item_#{$angleStep} {
     translate: calc(cos((#{$angleStep}deg - #{$offset}deg)) * $circle_radius) calc(sin((#{$angleStep}deg - #{$offset}deg)) * $circle_radius);
   }
 }
@@ -90,7 +90,7 @@ $active_dot_width: 3.5rem;
   @include absolute_center();
   font-size: 1.25rem;
   opacity: 0;
-  transition: opacity $standard_transition;
+  transition: opacity $standard_transition, transform $bezier;
   pointer-events: none;
 }
 

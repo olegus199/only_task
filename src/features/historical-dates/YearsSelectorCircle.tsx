@@ -94,23 +94,27 @@ const Dot: FC<DotProps> = ({ idx, rotation }) => {
   }, []);
 
   return (
-    <div
-      onClick={() => handleDotClick(idx)}
-      style={{ transform: `translateX(-50%) translateY(-50%) rotate(${-rotation}deg)` }}
-      className={`${styles.dot}  ${styles["dot_" + [idx * ANGLE_STEP]]} 
+    <>
+      <div
+        onClick={() => handleDotClick(idx)}
+        style={{ transform: `translateX(-50%) translateY(-50%) rotate(${-rotation}deg)` }}
+        className={`${styles.dot}  ${styles["item_" + [idx * ANGLE_STEP]]} 
     ${activePeriodName === dotPeriodName && styles.dot_active}`}
-    >
-      <div className={`${styles.period_number} ${activePeriodName === dotPeriodName && styles.period_number_visible}`}>
+      >
+        {activePeriodName === dotPeriodName && (
+          <p
+            ref={activePeriodNameRef}
+            className={styles.active_period_name}
+          >{translatedTimePeriodNames[activePeriodName]}</p>
+        )}
+      </div>
+      <div
+        style={{ transform: `translateX(-50%) translateY(-50%) rotate(${-rotation}deg)` }}
+        className={`${styles.period_number} ${styles["item_" + [idx * ANGLE_STEP]]} ${activePeriodName === dotPeriodName && styles.period_number_visible}`}
+      >
         {idx + 1}
       </div>
-
-      {activePeriodName === dotPeriodName && (
-        <p
-          ref={activePeriodNameRef}
-          className={styles.active_period_name}
-        >{translatedTimePeriodNames[activePeriodName]}</p>
-      )}
-    </div>
+    </>
   );
 };
 
