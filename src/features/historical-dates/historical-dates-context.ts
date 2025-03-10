@@ -8,6 +8,8 @@ export type TimePeriodName =
   | "sports"
   | "science";
 
+export type TranslatedTimePeriodName = Record<TimePeriodName, string>;
+
 interface IEvent {
   year: number;
   description: string;
@@ -19,10 +21,17 @@ export interface TimePeriod {
   events: IEvent[];
 }
 
+export interface ActiveTimePeriod extends TimePeriod {
+  currentIdx: number;
+  multiplier: number;
+}
+
 export interface IHistoricalDatesContext {
   timePeriods: TimePeriod[];
-  activeTimePeriod: TimePeriod;
-  handleChangeActiveTimePeriod: (name: TimePeriodName) => void;
+  activeTimePeriod: ActiveTimePeriod;
+  translatedTimePeriodNames: TranslatedTimePeriodName;
+  handleChangeActiveTimePeriod: (
+    name: TimePeriodName, newIdx: number, multiplier: number) => void;
 }
 
 export const HistoricalDatesContext = createContext<IHistoricalDatesContext | undefined>(undefined);

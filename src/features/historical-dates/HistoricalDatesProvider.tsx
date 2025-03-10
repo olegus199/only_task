@@ -1,11 +1,26 @@
-import { FC, ReactNode, useReducer, useState } from "react";
+import { FC, ReactNode, useEffect, useReducer, useState } from "react";
 import {
-  HistoricalDatesContext, IHistoricalDatesContext, TimePeriod, TimePeriodName,
+  ActiveTimePeriod,
+  HistoricalDatesContext,
+  IHistoricalDatesContext,
+  TimePeriod,
+  TimePeriodName,
+  TranslatedTimePeriodName,
 } from "./historical-dates-context.ts";
+import { node } from "globals";
 
 interface HistoricalDatesProviderProps {
   children: ReactNode;
 }
+
+const translatedTimePeriodNames: TranslatedTimePeriodName = {
+  technologies: "Технологии",
+  cinema: "Кино",
+  literature: "Литература",
+  theater: "Театр",
+  sports: "Спорт",
+  science: "Наука",
+};
 
 const timePeriods: TimePeriod[] = [
   {
@@ -41,18 +56,28 @@ const timePeriods: TimePeriod[] = [
 ];
 
 const HistoricalDatesProvider: FC<HistoricalDatesProviderProps> = ({ children }) => {
-  const [activeTimePeriod, setActiveTimePeriod] = useState<TimePeriod>(timePeriods[0]);
+  const [activeTimePeriod, setActiveTimePeriod] = useState<ActiveTimePeriod>({
+    ...timePeriods[0],
+    currentIdx: 0,
+    multiplier: 0,
+  });
 
-  function handleChangeActiveTimePeriod(name: TimePeriodName): void {
+  function handleChangeActiveTimePeriod(
+    name: TimePeriodName, newIdx: number, multiplier: number): void {
     const newTimePeriod = timePeriods.find((period) => period.name === name);
     if (newTimePeriod) {
-      setActiveTimePeriod(newTimePeriod);
+      setActiveTimePeriod({
+        ...newTimePeriod,
+        currentIdx: newIdx,
+        multiplier,
+      });
     }
   }
 
   const value: IHistoricalDatesContext = {
     timePeriods,
     activeTimePeriod,
+    translatedTimePeriodNames,
     handleChangeActiveTimePeriod,
   };
 

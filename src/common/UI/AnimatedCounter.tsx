@@ -11,7 +11,7 @@ interface AnimatedCounterProps {
 
 gsap.registerPlugin(useGSAP);
 
-const INITIAL_VALUE_SUBTRAHEND = 10;
+const INITIAL_VALUE_SUBTRAHEND = 5;
 
 const AnimatedCounter: FC<AnimatedCounterProps> = ({
   targetValue,
@@ -26,7 +26,7 @@ const AnimatedCounter: FC<AnimatedCounterProps> = ({
       ease: "sine.out",
       snap: { innerText: 1 },
     });
-  });
+  }, [targetValue]);
 
   return <div
     ref={ref}

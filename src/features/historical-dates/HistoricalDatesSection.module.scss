@@ -5,9 +5,23 @@
 }
 
 .content {
+  position: relative;
   max-width: 90rem;
   margin: 0 auto;
-  padding-top: 10.625rem;
+  padding: 10.625rem 0 6.5rem;
+  border-left: $bg_decor_border;
+  border-right: $bg_decor_border;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background-color: $bg_decor_color;
+    content: "";
+  }
 }
 
 .h1 {

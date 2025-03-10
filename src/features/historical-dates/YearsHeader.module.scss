@@ -3,6 +3,8 @@
 
 .years_header {
   @include flex_space_between();
+  position: relative;
   max-width: 60.875rem;
-  margin: 6rem auto 0;
+  margin: 0 auto;
+  z-index: 2;
 }

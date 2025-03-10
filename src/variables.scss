@@ -1,6 +1,17 @@
-$white_blue: #F4F5F9;
-$black_blue: #42567A;
-$white: #ffffff;
-$fuchsia_100: #EF5DA8;
-$iris_100: #5D5FEF;
-$blue: #3877EE;
+$white_blue: #f4f5f9;
+$black_blue: #42567a;
+$gray_blue: #9299a8;
+$white: #fff;
+$fuchsia_100: #ef5da8;
+$iris_100: #5d5fef;
+$blue: #3877ee;
+
+$years_circle_color: rgba($black_blue, .2);
+$bg_decor_color: rgba($black_blue, .1);
+$bg_decor_border: 1px solid $bg_decor_color;
+
+$standard_transition: .3s ease-out;
+
+$bezier: .9s cubic-bezier(.4, .89, .39, .99);
+
+$angle: 0;
