@@ -1,0 +1,71 @@
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@keyframes fade_in {
+  from {
+    opacity: 0;
+    transform: translateY(.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade_out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.swiper_container {
+  @include flex_space_between();
+  flex-wrap: nowrap;
+
+  margin: 3.5rem auto 0;
+  padding: 0 2.5rem;
+  max-width: 85rem;
+}
+
+.fade_in {
+  transform: translateY(.25rem);
+  opacity: 0;
+  animation: fade_in $bezier forwards;
+}
+
+.fade_out {
+  animation: fade_out $standard_transition forwards;
+}
+
+.swiper {
+  max-width: 73rem;
+  margin: 0 auto;
+}
+
+.swiper_button {
+  @include reset_button_defaults();
+  @include flex_center();
+
+  flex-shrink: 0;
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: $white;
+  color: $blue;
+  box-shadow: 0 0 .9375rem rgba($blue, .1);
+}
+
+.year {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5625rem;
+  color: $blue;
+}
+
+.description {
+  margin-top: .9375rem;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+}

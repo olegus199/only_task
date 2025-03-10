@@ -2,6 +2,7 @@ import styles from "./HistoricalDatesSection.module.scss";
 import { FC } from "react";
 import YearsSelectorCircle from "./YearsSelectorCircle.tsx";
 import YearsNavigation from "../../common/UI/YearsNavigation.tsx";
+import SwiperSlider from "./SwiperSlider.tsx";
 
 const HistoricalDatesSection: FC = () => {
   return (
@@ -10,7 +11,7 @@ const HistoricalDatesSection: FC = () => {
         <h1 className={styles.h1}>Исторические <br />даты</h1>
         <YearsSelectorCircle />
         <YearsNavigation />
-        <div style={{ height: "50vh" }}></div>
+        <SwiperSlider />
       </div>
     </main>
   );
