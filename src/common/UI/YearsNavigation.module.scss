@@ -1,0 +1,30 @@
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+.years_navigation {
+  margin-left: 5rem;
+}
+
+.navigation_total {
+  @include flex_align_center();
+  font-size: .875rem;
+}
+
+.navigation_buttons {
+  @include flex_align_center();
+  margin-top: 1.25rem;
+}
+
+.navigation_button {
+  @include reset_button_defaults();
+  @include flex_center();
+
+  width: 3.125rem;
+  aspect-ratio: 1;
+  border: 1px solid $gray_blue;
+  border-radius: 50%;
+
+  &:not(:last-child) {
+    margin-right: 1.25rem;
+  }
+}

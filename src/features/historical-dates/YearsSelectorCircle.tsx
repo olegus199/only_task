@@ -5,7 +5,6 @@ import { useHistoricalDates } from "./historical-dates-context.ts";
 
 const ANGLE_STEP = 60; //degrees
 const FULL_CIRCLE = 360; //degrees
-const DOTS_AMOUNT = 6;
 
 interface DotProps {
   idx: number;
@@ -13,7 +12,7 @@ interface DotProps {
 }
 
 const YearsSelectorCircle: FC = () => {
-  const { activeTimePeriod: { currentIdx, multiplier } } = useHistoricalDates();
+  const { activeTimePeriod: { currentIdx, multiplier }, dotsAmount } = useHistoricalDates();
   const rotation = currentIdx * ANGLE_STEP * -1 - multiplier * FULL_CIRCLE;
 
   return (
@@ -24,7 +23,7 @@ const YearsSelectorCircle: FC = () => {
         style={{ transform: `rotate(${rotation}deg)` }}
         className={styles.circle}
       >
-        {Array(DOTS_AMOUNT).fill(0).map((_, idx) => (
+        {Array(dotsAmount).fill(0).map((_, idx) => (
           <Dot
             key={idx}
             idx={idx}

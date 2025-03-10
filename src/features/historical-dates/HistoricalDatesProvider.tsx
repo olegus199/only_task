@@ -7,7 +7,6 @@ import {
   TimePeriodName,
   TranslatedTimePeriodName,
 } from "./historical-dates-context.ts";
-import { node } from "globals";
 
 interface HistoricalDatesProviderProps {
   children: ReactNode;
@@ -79,6 +78,7 @@ const HistoricalDatesProvider: FC<HistoricalDatesProviderProps> = ({ children })
     activeTimePeriod,
     translatedTimePeriodNames,
     handleChangeActiveTimePeriod,
+    dotsAmount: 6,
   };
 
   return (
